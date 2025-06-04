@@ -1,0 +1,71 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>Fruit List - Push & Pop</title>
+  <script src="https://cdn.tailwindcss.com"></script>
+</head>
+<body class="bg-gray-100 min-h-screen flex items-center justify-center" onload="showFruits();">
+
+  <div class="bg-white p-6 rounded-xl shadow-xl w-full max-w-md">
+    <h3 class="text-xl font-bold text-center text-orange-500 mb-4">
+      🍇 Fruits List 
+    </h3>
+
+    <div class="space-y-4">
+      <div id="fruits" class="bg-gray-50 p-4 rounded-md border border-gray-200 text-gray-800 font-medium"></div>
+
+      <input 
+        type="text" 
+        id="fruitInput" 
+        placeholder="Enter a fruit name to add"
+        class="w-full border border-gray-300 p-2 rounded-md focus:outline-none focus:ring-2 focus:ring-blue-400"
+      >
+
+      <div class="grid grid-cols-2 gap-4">
+        <button 
+          onclick="addFruit();" 
+          class="bg-green-500 text-white py-2 rounded-md hover:bg-green-700 transition"
+        >Add to list</button>
+
+        <button 
+          onclick="removeFruit();" 
+          class="bg-red-500 text-white py-2 rounded-md hover:bg-red-700 transition"
+        >Remove from list</button>
+      </div>
+    </div>
+  </div>
+
+  <script>
+    let fruits = ['Orange','Banana','Apple','Grape','Cherry','Melon','Watermelon','Peach'];
+
+    function showFruits() {
+      let div = "";
+      for (let i = 0; i < fruits.length; i++) {
+        div += `🍎 ${fruits[i]}<br>`;
+      }
+      document.getElementById('fruits').innerHTML = div;
+    }
+
+    function addFruit() {
+      const fruit = document.getElementById("fruitInput").value.trim();
+      if (fruit) {
+        fruits.push(fruit); 
+        showFruits();
+        document.getElementById("fruitInput").value = "";
+      } else {
+        alert("Please enter a fruit name.");
+      }
+    }
+
+    function removeFruit() {
+      if (fruits.length > 0) {
+        fruits.pop(); 
+        showFruits();
+      } else {
+        alert("List is already empty.");
+      }
+    }
+  </script>
+</body>
+</html>
